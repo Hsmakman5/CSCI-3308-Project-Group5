@@ -77,7 +77,7 @@ app.use(
 // *****************************************************
 
 app.get('/', (req, res) => {
-    res.redirect('/login'); //this will call the /login route in the API
+    res.render("Test"); //this will call the /login route in the API
 });
 
 
