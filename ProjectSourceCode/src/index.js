@@ -77,24 +77,30 @@ app.use(
 // *****************************************************
 
 app.get('/', (req, res) => {
-    res.render("Test"); //this will call the /login route in the API
+    res.redirect('/login'); //this will call the /login route in the API
+});
+app.get('/login', (req, res) => {
+    res.render('pages/login'); //this will call the /login route in the API
 });
 
 
-// // Authentication Middleware.
-// const auth = (req, res, next) => {
-//     console.log("auth");
-//     console.log(req.session.user);
-//     if (!req.session.user) {
-//         // Default to login page.
-//         return res.redirect('/login');
-//     }
-//     next();
-// };
 
 
-// // Authentication Required
-// app.use(auth);
+
+// Authentication Middleware.
+const auth = (req, res, next) => {
+    console.log("auth");
+    console.log(req.session.user);
+    if (!req.session.user) {
+        // Default to login page.
+        return res.redirect('/login');
+    }
+    next();
+};
+
+
+// Authentication Required
+app.use(auth);
 
 
 
