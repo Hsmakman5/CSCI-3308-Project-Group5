@@ -88,6 +88,25 @@ app.get('/login', (req, res) => {
     res.render('pages/login'); //this will call the /login route in the API
 });
 
+app.get('/register', (req, res) => {
+    res.render('pages/register');
+});
+
+app.post('/register', async (req, res) => {
+    try {
+      // Hash the password using bcrypt
+      const hash = await bcrypt.hash(req.body.password, 10);
+  
+      // Insert username and hashed password into the 'users' table
+    const sql = 'INSERT INTO users (username, password) VALUES (?, ?)';
+    const values = [req.body.username, hash];
+  
+      res.redirect('/login');
+    } catch (error) {
+      res.redirect('/register');
+    }
+  });
+
 
 
 
