@@ -77,8 +77,8 @@ app.use(
 // *****************************************************
 
 app.get('/welcome', (req, res) => {
-    res.json({status: 'success', message: 'Welcome!'});
-  });
+    res.json({ status: 'success', message: 'Welcome!' });
+});
 
 
 app.get('/', (req, res) => {
@@ -93,19 +93,27 @@ app.get('/register', (req, res) => {
 });
 
 app.post('/register', async (req, res) => {
-    try {
-      // Hash the password using bcrypt
-      const hash = await bcrypt.hash(req.body.password, 10);
-  
-      // Insert username and hashed password into the 'users' table
-    const sql = 'INSERT INTO users (username, password) VALUES (?, ?)';
-    const values = [req.body.username, hash];
-  
-      res.redirect('/login');
-    } catch (error) {
-      res.redirect('/register');
+    //hash the password using bcrypt library
+    const hash = await bcrypt.hash(req.body.password, 10);
+    if (hash.err) {
+        console.log(hash.err);
+    } else {
+        let query = "INSERT INTO users (username, password) VALUES ($1, $2)"
+        db.oneOrNone(query, [req.body.username, hash]).then((data) => {
+            res.status(200).json({
+                status: "Success"
+            })
+        }
+        ).catch(err => {
+            res.status(400).json({
+                status: "Invalid Input",
+                error: err
+            })
+            res.redirect('/login');
+        });
     }
-  });
+});
+
 
 
 
