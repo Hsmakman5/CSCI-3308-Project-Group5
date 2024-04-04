@@ -76,6 +76,11 @@ app.use(
 // <!-- Section 4 : API Routes -->
 // *****************************************************
 
+app.get('/welcome', (req, res) => {
+    res.json({status: 'success', message: 'Welcome!'});
+  });
+
+
 app.get('/', (req, res) => {
     res.render("Test"); //this will call the /login route in the API
 });
@@ -104,5 +109,7 @@ app.get('/', (req, res) => {
 // <!-- Section 5 : Start Server-->
 // *****************************************************
 // starting the server and keeping the connection open to listen for more requests
-app.listen(3000);
+
+//app.listen(3000);
+module.exports = app.listen(3000);
 console.log('Server is listening on port 3000');
