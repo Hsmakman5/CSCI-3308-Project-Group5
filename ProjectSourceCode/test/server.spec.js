@@ -71,6 +71,16 @@ describe('Testing Render', () => {
         done();
       });
   });
+  it('test "/register" route should render with an html response', done => {
+    chai
+      .request(server)
+      .get('/register') // for reference, see lab 8's login route (/login) which renders home.hbs
+      .end((err, res) => {
+        res.should.have.status(200); // Expecting a success status code
+        res.should.be.html; // Expecting a HTML response
+        done();
+      });
+  });
 });
 
 
