@@ -1,0 +1,42 @@
+Notes for and from Meeting 3:
+
+Commits from throughout the week can be seen here:
+https://github.com/Hsmakman5/CSCI-3308-Project-Group5/commits/v0.2
+
+Whats new:
+
+FRONT END
+- Build frameworks for pages once signed in
+    - Home / landing page
+    - Profile page
+- Added HTML and CSS to Homepage
+    - Bootstrap card to be updated with info from SQL tables
+- Built a header for all pages
+
+BACKEND
+- Added test cases from lab 
+- Finalized functionality of Login and Register pages
+- Included AUTH so users must sign in to use website
+    -May add a "use as guest" feature 
+- Built API get and Post calls for Login and Register with hashed passwords
+- Built SQL tables for all important information including
+    - users table
+    - Movies table
+    - Table link movies to weather
+    - Table to link users to moview
+- Built navigational api calls
+
+
+Know Bugs
+- Images are not displaying correctly
+- Can crash when creating a new user with matching credientials
+
+------------------------------------------------------------------------------------
+Upcoming
+- API of Weather implement
+- INSERT sql file
+- Updating movies based off of weather api
+- Finish back and front end of addidional pages
+- Finish Logout function
+
+
