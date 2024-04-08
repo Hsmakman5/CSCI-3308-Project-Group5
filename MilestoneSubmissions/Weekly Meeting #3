@@ -27,7 +27,7 @@ BACKEND
 - Built navigational api calls
 
 
-Know Bugs
+Known Bugs
 - Images are not displaying correctly
 - Can crash when creating a new user with matching credientials
 
