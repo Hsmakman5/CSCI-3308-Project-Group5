@@ -100,7 +100,7 @@ app.post('/register', async (req, res) => {
       // Insert username and hashed password into the 'users' table
     const sql = 'INSERT INTO users (username, password) VALUES (?, ?)';
     const values = [req.body.username, hash];
-  
+        
       res.redirect('/login');
     } catch (error) {
       res.redirect('/register');
