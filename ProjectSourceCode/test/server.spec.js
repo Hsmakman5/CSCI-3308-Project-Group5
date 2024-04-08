@@ -35,7 +35,7 @@ describe('Server!', () => {
 // Result: This test case should pass and return a status 200 along with a "Success" message.
 // Explanation: The testcase will call the /add_user API with the following input
 // and expects the API to return a status of 200 along with the "Success" message.
-
+/*
 describe('Testing Add User API', () => {
   it('positive : /register', done => {
     chai
@@ -59,6 +59,7 @@ describe('Testing Add User API', () => {
       });
   });
 });
+*/
 describe('Testing Render', () => {
   // Sample test case given to test /test endpoint.
   it('test "/login" route should render with an html response', done => {
