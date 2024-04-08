@@ -1,16 +1,15 @@
 drop table if EXISTS users;
 CREATE TABLE users (
-        user_id INT PRIMARY KEY NOT NUll,
         username VARCHAR(50) PRIMARY KEY,
-        password CHAR(60) NOT NULL
+        password VARCHAR(60) NOT NULL
 );
 
 drop table if EXISTS movies;
 CREATE TABLE movies (
         movie_id INT PRIMARY KEY NOT NUll,
-        movie_name = VARCHAR(100) NOT NUll,
+        movie_name VARCHAR(100) NOT NUll,
         duration SMALLINT NOT NUll,
-        language VARCHAR(30) NOT NUll,
+        language VARCHAR(30) NOT NUll
 );
 
 
@@ -30,7 +29,7 @@ CREATE TABLE movies_to_movie_recs(
 );
 
 drop table if EXISTS users_to_movie_recs;
-CREATE TABLE movies_to_movie_recs(
+CREATE TABLE users_to_movie_recs(
         user_id INT NOT NUll,
         movie_rec_id INT NOT NUll
 );

@@ -1,14 +1,31 @@
-<div class="container">
-    <h2> Register </h2>
-    {{message}}
-    <form action="/register" method="post">
-        <div class="mb-3">
-            <label for="usernameInput" class="form-label">Username</label>
-            <input name="username" class="form-control" id="usernameInput">
-            
-            <label for="passwordInput" class="form-label">Password</label>
-            <input name="password" class="form-control" id="passwordInput">
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+{{> message}}
+<style>
+    form {
+        margin: auto;
+        padding-left: 350px ;
+        padding-right: 450px ;
+    }
+    h1 {
+        margin: auto;
+        padding-left: 350px ;
+        padding-right: 450px ;
+    }
+</style>
+<div>
+    <h1> Register:</h1>
+    <form class = "form-group" method="post" action="/register">
+    
+        <label for="text">Username:</label> 
+        <input type="text" class = "form-control"  name="username" /><br />
+    
+        <label for="text">Password:</label> 
+        <input type="text" class = "form-control"  name="password" /><br />
+        
+        <button type="submit" class = "btn btn-primary"/> Register </button>
+    
+        <br/>
+        <label>If you already have an account: </label>
+        <a href = "/login"> login</a>
     </form>
+
 </div>

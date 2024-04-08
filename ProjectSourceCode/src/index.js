@@ -72,6 +72,11 @@ app.use(
     })
 );
 
+const user = {
+    username: undefined,
+    password: undefined,
+  };
+
 // *****************************************************
 // <!-- Section 4 : API Routes -->
 // *****************************************************
@@ -115,12 +120,37 @@ app.post('/register', async (req, res) => {
 });
 
 app.post('/login', async (req, res) => {
+    /* I switched this to the await querey below becasue it was crashing when I tried to login -Henry
     let query = "SELECT * FROM users WHERE username = $1"
     const user = await db.oneOrNone(query, req.body.username);
     if (!user) {
         res.redirect("/register");
         return;
     }
+    */
+    const user ={
+        username: undefined,
+        password:undefined,
+    }
+    
+    await db.one(`SELECT * FROM users WHERE username = $1 LIMIT 1`, [req.body.username])
+    .then(function (data) {
+      userName = data.username;
+      user.password = data.password;
+      console.log("Username match")
+  
+    })
+    .catch(function (err) {
+      console.log(err);
+      res.render('pages/register', {
+        error: true,
+        message:'Username not found',
+      });
+  
+    }
+  )
+
+
     const match = await bcrypt.compare(req.body.password, user.password);
     if (!match) {
         res.render('pages/login', {
