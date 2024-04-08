@@ -77,8 +77,8 @@ app.use(
 // *****************************************************
 
 app.get('/welcome', (req, res) => {
-    res.json({status: 'success', message: 'Welcome!'});
-  });
+    res.json({ status: 'success', message: 'Welcome!' });
+});
 
 
 app.get('/', (req, res) => {
@@ -87,25 +87,54 @@ app.get('/', (req, res) => {
 app.get('/login', (req, res) => {
     res.render('pages/login'); //this will call the /login route in the API
 });
-
 app.get('/register', (req, res) => {
     res.render('pages/register');
 });
 
 app.post('/register', async (req, res) => {
-    try {
-      // Hash the password using bcrypt
-      const hash = await bcrypt.hash(req.body.password, 10);
-  
-      // Insert username and hashed password into the 'users' table
-    const sql = 'INSERT INTO users (username, password) VALUES (?, ?)';
-    const values = [req.body.username, hash];
+    //hash the password using bcrypt library
+    const hash = await bcrypt.hash(req.body.password, 10);
+    if (hash.err) {
+        console.log(hash.err);
+    } else {
+        let query = "INSERT INTO users (username, password) VALUES ($1, $2)"
+        db.oneOrNone(query, [req.body.username, hash]).then((data) => {
+            res.status(200);
+            res.redirect('/login');
+        }
+        ).catch(err => {
+            res.render('pages/register', {
+                error: true,
+                message: "Invalid Input"
+            })
         
-      res.redirect('/login');
-    } catch (error) {
-      res.redirect('/register');
+            res.status(400);
+            
+        });
     }
-  });
+});
+
+app.post('/login', async (req, res) => {
+    let query = "SELECT * FROM users WHERE username = $1"
+    const user = await db.oneOrNone(query, req.body.username);
+    if (!user) {
+        res.redirect("/register");
+        return;
+    }
+    const match = await bcrypt.compare(req.body.password, user.password);
+    if (!match) {
+        res.render('pages/login', {
+            error: true,
+            message: "Incorrect username or password"
+        })
+    }
+    else {
+        req.session.user = user;
+        req.session.save();
+        res.redirect("/home");
+    }
+});
+
 
 
 
@@ -125,6 +154,15 @@ const auth = (req, res, next) => {
 
 // Authentication Required
 app.use(auth);
+
+app.get('/home', (req, res) => {
+    res.render('pages/home');
+});
+
+app.get('/logout', (req, res) => {
+    req.session.destroy();
+    res.render('pages/logout');
+})
 
 
 
