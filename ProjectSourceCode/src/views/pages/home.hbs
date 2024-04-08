@@ -1,25 +1,50 @@
-<div class="container">
-    <h2> Home </h2>
-    {{message}}
-    <form action="/login" method="post">
-        <div class="mb-3">
-            <label for="Mood" class="form-label">Mood</label>
-            <input name="Mood" class="form-control" id="Mood">
 
-            <button type="submit" class="btn btn-primary">Submit</button>
-            
-            <label for="Weather" class="form-label">Weather</label>
-            <input name="Weather" class="form-control" id="Weather">
 
-            <button type="submit" class="btn btn-primary">Submit</button>
+<html >
+  <head >
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Home</title>
 
-            <label for="Time" class="form-label">Time</label>
-            <input name="Time" class="form-control" id="Time">
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+          crossorigin="anonymous"
+          
+        />
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    </head>
+   </head>
 
-            <button type="submit" class="btn btn-primary">Submit</button>
+     
 
-        </div>
+</body style="background-color: black;">
 
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+<style type="text/css">
+  body { background: rgb(49, 48, 48) !important; } /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
+</style>
+ 
+
+<div class="card" style="width: 25rem; margin:auto; margin-top: 180px;">
+  <img src="../../resources/img/Jaws_movie_poster.png" class="card-img-top" alt="temp Image Location" >
+  <div class="card-body">
+    <h5 class="card-title">Recomended Movie: Jaws</h5>
+    <p class="card-text">A very brief description of the movie will go here: SHARK. Oh no theres a big shark and its hungry and wants to eat people. They gonna try and get that shark but realize too late they may in fact, need a bigger boat...</p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Movie length: 98 minutes</li>
+    <li class="list-group-item">Genre: Action</li>
+    <li class="list-group-item">Movie Rating: 10/10</li>
+    <li class="list-group-item">Weather Match: 6.8/10</li>
+  </ul>
+  <div class="card-body">
+    <a href="#" class="card-link">Save Movie</a>
+    <a href="#" class="card-link">Next Movie</a>
+  </div>
 </div>
+
+
+  </body>
+</html>
