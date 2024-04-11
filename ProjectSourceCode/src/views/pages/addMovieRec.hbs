@@ -1,14 +1,21 @@
 <div class="container">
+    <form class="form-inline" action="/addMovieRec" method="get">
+        <div class="input-group mb-3">
+            <input name="search" type="text" class="form-control" placeholder="" aria-label="Search"
+                aria-describedby="button-addon1">
+            <button class="btn btn-outline-secondary" type="submit" id="button-addon1">Search</button>
+        </div>
+    </form>
     <div class="row row-cols-1 row-cols-md-3 g-3">
         {{#each movies}}
         {{#if poster_path}}
         <div class="col">
             <div class="card">
-                <img src="https://image.tmdb.org/t/p/w400{{poster_path}}" class="card-img-top img-fluid"  >
+                <img src="https://image.tmdb.org/t/p/w400{{poster_path}}" class="card-img-top img-fluid">
                 <div class="card-body">
                     <h5 class="card-title">{{title}}</h5>
                     <p class="card-text">Realeas Date: {{release_date}}</p>
-                     <button>Add</button>
+                    <button>Add</button>
                 </div>
             </div>
         </div>

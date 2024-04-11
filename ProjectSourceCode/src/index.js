@@ -191,9 +191,10 @@ const auth = (req, res, next) => {
 };
 
 app.get('/addMovieRec', (req, res, next) => {
-
+    
+    
     axios({
-        url: `https://api.themoviedb.org/3/search/movie?include_adult=false&language=en-US`,
+        url: req.query.search? `https://api.themoviedb.org/3/search/movie?include_adult=false&language=en-US` : 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&sort_by=popularity.desc',
         method: 'GET',
         dataType: 'json',
         headers: {
@@ -201,14 +202,14 @@ app.get('/addMovieRec', (req, res, next) => {
             'accept': 'application/json',
         },
         params: {
-            query: "Baseball",
+            query: req.query.search,
             page: 1, 
         },
     })
         .then(results => {
             // console.log(results.data._embedded.events);
             // the results will be displayed on the terminal if the docker containers are running // Send some parameters
-
+            console.log();
             res.render('pages/addMovieRec', {
                 movies: results.data.results
             })
