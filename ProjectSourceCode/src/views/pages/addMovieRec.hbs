@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="row row-cols-1 row-cols-md-3 g-3">
+        {{#each movies}}
+        {{#if poster_path}}
+        <div class="col">
+            <div class="card">
+                <img src="https://image.tmdb.org/t/p/w400{{poster_path}}" class="card-img-top img-fluid"  >
+                <div class="card-body">
+                    <h5 class="card-title">{{title}}</h5>
+                    <p class="card-text">Realeas Date: {{release_date}}</p>
+                     <button>Add</button>
+                </div>
+            </div>
+        </div>
+        {{/if}}
+        {{/each}}
+    </div>
+</div>

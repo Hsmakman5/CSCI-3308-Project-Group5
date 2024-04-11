@@ -75,7 +75,7 @@ app.use(
 const user = {
     username: undefined,
     password: undefined,
-  };
+};
 
 // *****************************************************
 // <!-- Section 4 : API Routes -->
@@ -118,9 +118,9 @@ app.post('/register', async (req, res) => {
                 error: true,
                 message: "Invalid Input"
             })
-        
+
             res.status(400);
-            
+
         });
     }
 });
@@ -134,27 +134,27 @@ app.post('/login', async (req, res) => {
         return;
     }
     */
-    const user ={
+    const user = {
         username: undefined,
-        password:undefined,
+        password: undefined,
     }
-    
+
     await db.one(`SELECT * FROM users WHERE username = $1 LIMIT 1`, [req.body.username])
-    .then(function (data) {
-      userName = data.username;
-      user.password = data.password;
-      console.log("Username match")
-  
-    })
-    .catch(function (err) {
-      console.log(err);
-      res.render('pages/register', {
-        error: true,
-        message:'Username not found',
-      });
-  
-    }
-  )
+        .then(function (data) {
+            userName = data.username;
+            user.password = data.password;
+            console.log("Username match")
+
+        })
+        .catch(function (err) {
+            console.log(err);
+            res.render('pages/register', {
+                error: true,
+                message: 'Username not found',
+            });
+
+        }
+        )
 
 
     const match = await bcrypt.compare(req.body.password, user.password);
@@ -190,6 +190,38 @@ const auth = (req, res, next) => {
     next();
 };
 
+app.get('/addMovieRec', (req, res, next) => {
+
+    axios({
+        url: `https://api.themoviedb.org/3/search/movie?include_adult=false&language=en-US`,
+        method: 'GET',
+        dataType: 'json',
+        headers: {
+            'Authorization': process.env.API_KEY,
+            'accept': 'application/json',
+        },
+        params: {
+            query: "Baseball",
+            page: 1, 
+        },
+    })
+        .then(results => {
+            // console.log(results.data._embedded.events);
+            // the results will be displayed on the terminal if the docker containers are running // Send some parameters
+
+            res.render('pages/addMovieRec', {
+                movies: results.data.results
+            })
+        })
+        .catch(error => {
+            console.log(error)
+            res.render('pages/addMovieRec', {
+                events: []
+            })
+        });
+
+})
+
 
 // Authentication Required
 app.use(auth);
@@ -202,6 +234,8 @@ app.get('/logout', (req, res) => {
     req.session.destroy();
     res.render('pages/logout');
 })
+
+
 
 
 
