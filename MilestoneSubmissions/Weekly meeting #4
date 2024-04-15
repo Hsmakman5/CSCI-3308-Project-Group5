@@ -1,0 +1,36 @@
+
+Notes for and from Meeting 4:
+
+Commits from throughout the week can be seen here:
+https://github.com/Hsmakman5/CSCI-3308-Project-Group5/commits/v0.2
+
+What's new:
+
+FRONT END
+- Finished Modal Templates (Ethan)
+    - Allows user to input data based on the movies (Ethan, Henry)
+- Added HTML and CSS to Homepage (Henry)
+- worked on header display if user is not logged in (Walid)
+- Worked further on profile page (Walid, Nico)
+- added logout function (Nico)
+- Started modal used to submit information from movies search (Nico)
+- Started working on dropdown menus for Home page (Henry)
+
+BACKEND
+- Added movie search function (Ethan)
+- Connected to external Movie Database (Ethan)
+- fixed nav bar redirect to profile (Walid)
+- Finalized functionality of Login and Register pages (Henry, Nico, Walid)
+- Improved AUTH so users must sign in to use website (Ethan, Henry, Walid)
+
+
+Known Bugs
+- Images are not displaying correctly (Henry)
+- Can crash when unknown user logs in (Henry)
+
+------------------------------------------------------------------------------------
+Upcoming
+- Finish back and front end of addidional pages (Frontend: Henry  Backend: Nico, Walid )
+- Refine Profile page
+- Have it so user can "Like" a movie
+- Refine HTML and CSS on main page

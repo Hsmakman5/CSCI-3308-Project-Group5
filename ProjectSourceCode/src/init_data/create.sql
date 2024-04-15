@@ -9,7 +9,8 @@ CREATE TABLE movies (
         movie_id INT PRIMARY KEY NOT NUll,
         movie_name VARCHAR(100) NOT NUll,
         duration SMALLINT NOT NUll,
-        language VARCHAR(30) NOT NUll
+        genre VARCHAR(100),
+        rating SMALLINT NOT NUll
 );
 
 
@@ -33,6 +34,14 @@ CREATE TABLE users_to_movie_recs(
         user_id INT NOT NUll,
         movie_rec_id INT NOT NUll
 );
+
+drop table if EXISTS weather;
+CREATE TABLE weather_to_movies(
+        weather_id INT PRIMARY KEY NOT NUll,
+        weather_name VARCHAR(30) NOT NUll,
+        related_genre VARCHAR(30) NOT NULL
+);
+
 
 
 
