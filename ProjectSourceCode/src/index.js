@@ -236,7 +236,13 @@ app.get('/logout', (req, res) => {
     res.render('pages/logout');
 })
 
-
+//MODAL
+function initializeEventModal() {
+    // Reference: https://getbootstrap.com/docs/5.3/components/modal/#via-javascript
+    ADD_MODAL = new bootstrap.Modal(document.getElementById('add-info'));
+    console.log(ADD_MODAL);
+  }
+  
 
 
 

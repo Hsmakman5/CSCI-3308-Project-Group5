@@ -38,7 +38,63 @@
         {{/if}}
         {{/each}}
     </div>
+</div>
 
+<div class="modal" tabindex="-1" id="add-info">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header"></div>
+           <p class = "modal-title"></p>
+          <div class="modal-body">
+            <form>
+              
+              <div class="mb-3">
+                <label for="add_info" class="event-label">Add Info</label>
+                <input type="add" class="form-control" id="add_info" aria-describedby="info">
+              </div>
+              <div class="col-md-4">
+                <select id="Like" class="form-select">
+                  <option selected>Like?</option>
+                  <option>Yes</option>
+                  <option>No</option>
+                </select>
+              </div>
+            <div class="col-md-4">
+                <select id="Mood" class="form-select">
+                  <option selected>Mood?</option>
+                  <option>Happy</option>
+                  <option>Sad</option>
+                  <option>Scared</option>
+                  <option>Angry</option>
+                  <option>Chill</option>
+                  <option>Meh</option>
+                  <option>Bored</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="events" class="event-label">Time</label>
+                <input type="time" class="form-control" id="event_time" aria-describedby="event">
+              </div>
+              <button id="submit_button" class="btn btn-primary" type="submit">
+                Create Event
+              </button>
+              <button id="close_button" class="btn btn-primary" type="submit">
+                Close
+              </button>
+            </form>
+          </div>
+          <div class="modal-footer"></div>
+        </div>
+        <button type="button" class="btn btn-secondary"
+                data-bs-toggle="tooltip" data-bs-placement="top"
+                data-bs-custom-class="custom-tooltip"
+                data-bs-title="event_name, event_location, event_time">
+                Custom tooltip
+              </button>
+      </div>
+    </div>
+    
+{{!--
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -138,4 +194,4 @@
             </div>
         </div>
     </div>
-</div>
+</div>/--}}
