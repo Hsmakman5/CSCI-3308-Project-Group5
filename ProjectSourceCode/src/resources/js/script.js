@@ -8,7 +8,7 @@ if (exampleModal) {
     // Extract info from data-bs-* attributes
     const movie = button.getAttribute('data-bs-whatever')
     // If necessary, you could initiate an Ajax request here
-    // and then do the updating in a callback.
+    // and then do the updating in a callback.;
 
     // Update the modal's content.
     const modalTitle = exampleModal.querySelector('.modal-title')
