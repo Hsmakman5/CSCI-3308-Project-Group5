@@ -7,3 +7,4 @@ INSERT INTO weather (weather_id, weather_name, related_genre);
     ('5', 'Thunderstorms', 'Horror'),
     ('6', 'Snowing', 'History'),
     ('7', 'Extreme', 'Action');
+
