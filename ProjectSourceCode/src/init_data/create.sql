@@ -6,10 +6,9 @@ CREATE TABLE users (
 
 drop table if EXISTS movies;
 CREATE TABLE movies (
-        movie_id INT PRIMARY KEY NOT NUll,
+        movie_id INT KEY NOT NUll,
         movie_name VARCHAR(100) NOT NUll,
-        duration SMALLINT NOT NUll,
-        genre VARCHAR(100),
+        url VARCHAR(100) NOT NULL,
         rating SMALLINT NOT NUll
 );
 
@@ -19,7 +18,6 @@ CREATE TABLE movie_recs (
         movie_rec_id INT PRIMARY KEY NOT NUll,
         weather VARCHAR(30) NOT NUll,
         mood VARCHAR(30) NOT NUll,
-        time_of_day VARCHAR(30) NOT NUll,
         likes SMALLINT NOT NULL
 );
 
@@ -41,25 +39,3 @@ CREATE TABLE weather_to_movies(
         weather_name VARCHAR(30) NOT NUll,
         related_genre VARCHAR(30) NOT NULL
 );
-
-
-
-
--- Table users {
---   id integer [primary key],
---   username varchar,
---   password varchar,
---   likes varchar
--- }
-
--- Table movies {
---   id integer [primary key],
---   name varchar,
---   genre varchar,
---   weather varchar
--- }
-
--- Table users_to_movies {
---   movie_id int,
---   user_id int
--- }
