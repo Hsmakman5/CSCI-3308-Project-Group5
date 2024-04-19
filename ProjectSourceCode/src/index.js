@@ -56,7 +56,7 @@ app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(bodyParser.json()); // specify the usage of JSON for parsing request body.
-
+app.use(express.static(__dirname));
 // initialize session variables
 app.use(
     session({
@@ -75,6 +75,7 @@ app.use(
 const user = {
     username: undefined,
     password: undefined,
+    id: undefined
 };
 
 // *****************************************************
@@ -105,6 +106,7 @@ app.get('/profile', (req, res) => {
 app.post('/register', async (req, res) => {
     //hash the password using bcrypt library
     const hash = await bcrypt.hash(req.body.password, 10);
+
     if (hash.err) {
         console.log(hash.err);
     } else {
@@ -134,16 +136,14 @@ app.post('/login', async (req, res) => {
         return;
     }
     */
-    const user = {
-        username: undefined,
-        password: undefined,
-    }
+
 
     await db.one(`SELECT * FROM users WHERE username = $1 LIMIT 1`, [req.body.username])
         .then(function (data) {
-            userName = data.username;
+            user.username = data.username;
             user.password = data.password;
-            console.log("Username match")
+            user.id = data.user_id;
+            // console.log("Username match")
 
         })
         .catch(function (err) {
@@ -174,15 +174,15 @@ app.post('/login', async (req, res) => {
 app.get('/logout', (req, res) => {
     req.session.destroy();
     res.render('pages/logout');
-  });
+});
 
 
 
 
 // Authentication Middleware.
 const auth = (req, res, next) => {
-    console.log("auth");
-    console.log(req.session.user);
+    // console.log("auth");
+    // console.log(req.session.user);
     if (!req.session.user) {
         // Default to login page.
         return res.redirect('/login');
@@ -190,11 +190,30 @@ const auth = (req, res, next) => {
     next();
 };
 
-app.get('/addMovieRec', (req, res, next) => {
-    
-    
+
+
+
+
+// Authentication Required
+app.use(auth);
+
+app.get('/home', (req, res) => {
+    res.render('pages/home', {
+        user: req.session.user
+    });
+});
+
+app.get('/logout', (req, res) => {
+    req.session.destroy();
+    res.render('pages/logout');
+})
+
+
+let movieAddMessage = undefined;
+
+app.get('/addMovieRec', async (req, res) => {
     axios({
-        url: req.query.search? `https://api.themoviedb.org/3/search/movie?include_adult=false&language=en-US` : 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&sort_by=popularity.desc',
+        url: req.query.search ? `https://api.themoviedb.org/3/search/movie?include_adult=false&language=en-US` : 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&sort_by=popularity.desc',
         method: 'GET',
         dataType: 'json',
         headers: {
@@ -203,46 +222,66 @@ app.get('/addMovieRec', (req, res, next) => {
         },
         params: {
             query: req.query.search,
-            page: 1, 
+            page: 1,
         },
     })
         .then(results => {
             // console.log(results.data._embedded.events);
             // the results will be displayed on the terminal if the docker containers are running // Send some parameters
             console.log();
-            res.render('pages/addMovieRec', {
-                movies: results.data.results
-            })
+
+            if(movieAddMessage){
+                res.render('pages/addMovieRec', {
+                    user: req.session.user,
+                    movies: results.data.results,
+                    error: false,
+                    message: movieAddMessage
+                    
+                });
+            }
+            else{
+                res.render('pages/addMovieRec', {
+                    user: req.session.user,
+                    movies: results.data.results
+                });
+
+            }
+            
         })
         .catch(error => {
             console.log(error)
             res.render('pages/addMovieRec', {
+                user: req.session.user,
                 events: []
             })
         });
 
 })
+app.post('/addMovieRec', async (req, res) => {
+    const movie_id = parseInt(req.body.id);
 
 
-// Authentication Required
-app.use(auth);
+    const addMovie = "INSERT INTO movies (movie_id, movie_name, url) VALUES ($1, $2, $3) ON CONFLICT DO NOTHING"
+    const movieRec = "INSERT INTO movie_recs (weather, mood, time) VALUES ($1, $2, $3) RETURNING movie_rec_id"
+    const addUsersToTovieRecs = "INSERT INTO users_to_movie_recs (user_id, movie_rec_id) VALUES ($1, $2)"
+    const addMoviesToMovieRecs = "INSERT INTO movies_to_movie_recs (movie_id, movie_rec_id) VALUES ($1, $2)"
 
-app.get('/home', (req, res) => {
-    res.render('pages/home');
+    const data = await db.task(task => {
+        return task.batch([
+            task.none(addMovie, [movie_id, req.body.movie_name, req.body.url]),
+            task.one(movieRec, [req.body.weather, req.body.mood, req.body.time]),
+            task.none(addMoviesToMovieRecs, [req.session.user.id, movie_id])
+        ])
+    })
+
+
+    db.none(addUsersToTovieRecs, [req.session.user.id, data[1].movie_rec_id]).then(() => {
+        movieAddMessage = "Succsesfully added " + req.body.movie_name + " to watched movies";
+        res.redirect(req.get('referer'));
+    })
+
 });
 
-app.get('/logout', (req, res) => {
-    req.session.destroy();
-    res.render('pages/logout');
-})
-
-//MODAL
-function initializeEventModal() {
-    // Reference: https://getbootstrap.com/docs/5.3/components/modal/#via-javascript
-    ADD_MODAL = new bootstrap.Modal(document.getElementById('add-info'));
-    console.log(ADD_MODAL);
-  }
-  
 
 
 

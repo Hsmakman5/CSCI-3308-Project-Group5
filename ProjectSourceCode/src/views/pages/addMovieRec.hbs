@@ -1,8 +1,11 @@
-<script src="../../resources/js/script.js"></script>
+<script src="/resources/js/script.js"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
     crossorigin="anonymous"></script>
 
+
+{{> message}}
 <div class="container">
     <h1 class="fs-3">Add Previously Watched Movies</h1>
 
@@ -28,10 +31,17 @@
                             <p class="card-text overflow-hidden">{{overview}}</p>
                         </div>
                     </div> --}}
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                        data-bs-whatever={{title}}>
+                    <button onclick="showModal()" id="{{title}}" type="button" class="btn btn-primary"
+                        data-bs-toggle="modal" data-bs-target="#modal" data-bs-whatever={{title}}>
                         Add
                     </button>
+
+                    <script>
+                        var button = document.getElementById("{{title}}")
+                        button.addEventListener('click', function () {
+                            showModal("{{id}}", "{{title}}", "{{poster_path}}");
+                        })
+                    </script>
                 </div>
             </div>
         </div>
@@ -93,29 +103,23 @@
 </div>--}}
 
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">"Movie Title"</h1>
+                <h1 class="modal-title fs-5" id="modalTitle">"Movie Title"</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <h4 class=" fs-6">Fill out based on when you watched the movie</h4>
 
-                <form>
+                <form method="post" action="/addMovieRec">
                     <label class="form-label">Time:</label>
-                    <input type="time" class="form-control" placeholder="time" id="time" required>
-                    <div class="col-md-4">
-                            <select id="Like" class="form-select">
-                                <option selected>Like</option>
-                                <option>Yes</option>
-                                <option>No</option>
-                            </select>
-                        </div>
+                    <input type="time" name="time" class="form-control" placeholder="time" id="time" required>
+
                     <label class="form-label">Mood:</label>
                     <div class="col g-3">
-                        <input type="radio" class="btn-check" name="mood" id="happy" autocomplete="off" checked>
+                        <input type="radio" class="btn-check" name="mood" value="happy" id="happy" autocomplete="off" checked>
                         <label class="btn" for="happy">
                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                                 class="bi bi-emoji-smile-fill" viewBox="0 0 16 16">
@@ -124,7 +128,8 @@
                             </svg>
                         </label>
 
-                        <input type="radio" class="btn-check" name="mood" id="netural" autocomplete="off">
+
+                        <input type="radio" class="btn-check" name="mood" value="netural" id = "netural" autocomplete="off">
                         <label class="btn" for="netural">
                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                                 class="bi bi-emoji-neutral-fill" viewBox="0 0 16 16">
@@ -133,7 +138,7 @@
                             </svg>
                         </label>
 
-                        <input type="radio" class="btn-check" name="mood" id="sad" autocomplete="off">
+                        <input type="radio" class="btn-check" name="mood" value="sad" id="sad" autocomplete="off">
                         <label class="btn" for="sad">
                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                                 class="bi bi-emoji-frown-fill" viewBox="0 0 16 16">
@@ -142,7 +147,7 @@
                             </svg>
                         </label>
 
-                        <input type="radio" class="btn-check" name="mood" id="mad" autocomplete="off">
+                        <input type="radio" class="btn-check" name="mood" value="mad" id="mad" autocomplete="off">
                         <label class="btn" for="mad">
                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                                 class="bi bi-emoji-angry-fill" viewBox="0 0 16 16">
@@ -153,7 +158,7 @@
                     </div>
                     <label class="form-label">Weather:</label>
                     <div class="col g-3">
-                        <input type="radio" class="btn-check" name="weather" id="sunny" autocomplete="off" checked>
+                        <input type="radio" class="btn-check" name="weather" value="sunny" id="sunny" autocomplete="off" checked>
                         <label class="btn" for="sunny">
                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                                 class="bi bi-sun-fill" viewBox="0 0 16 16">
@@ -162,7 +167,7 @@
                             </svg>
                         </label>
 
-                        <input type="radio" class="btn-check" name="weather" id="cloudy" autocomplete="off">
+                        <input type="radio" class="btn-check" name="weather" id="cloudy" value="cloudy" autocomplete="off">
                         <label class="btn" for="cloudy">
                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                                 class="bi bi-cloud-sun-fill" viewBox="0 0 16 16">
@@ -172,7 +177,7 @@
                             </svg>
                         </label>
 
-                        <input type="radio" class="btn-check" name="weather" id="rain" autocomplete="off">
+                        <input type="radio" class="btn-check" name="weather" id="rain" value="rain" autocomplete="off">
                         <label class="btn" for="rain">
                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                                 class="bi bi-cloud-rain-fill" viewBox="0 0 16 16">
@@ -181,7 +186,7 @@
                             </svg>
                         </label>
 
-                        <input type="radio" class="btn-check" name="weather" id="snow" autocomplete="off">
+                        <input type="radio" class="btn-check" name="weather" id="snow" value="snow" autocomplete="off">
                         <label class="btn" for="snow">
                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                                 class="bi bi-cloud-snow-fill" viewBox="0 0 16 16">
@@ -189,6 +194,12 @@
                                     d="M2.625 11.5a.25.25 0 0 1 .25.25v.57l.501-.287a.25.25 0 0 1 .248.434l-.495.283.495.283a.25.25 0 0 1-.248.434l-.501-.286v.569a.25.25 0 1 1-.5 0v-.57l-.501.287a.25.25 0 0 1-.248-.434l.495-.283-.495-.283a.25.25 0 0 1 .248-.434l.501.286v-.569a.25.25 0 0 1 .25-.25m2.75 2a.25.25 0 0 1 .25.25v.57l.5-.287a.25.25 0 0 1 .249.434l-.495.283.495.283a.25.25 0 0 1-.248.434l-.501-.286v.569a.25.25 0 1 1-.5 0v-.57l-.501.287a.25.25 0 0 1-.248-.434l.495-.283-.495-.283a.25.25 0 0 1 .248-.434l.501.286v-.569a.25.25 0 0 1 .25-.25m5.5 0a.25.25 0 0 1 .25.25v.57l.5-.287a.25.25 0 0 1 .249.434l-.495.283.495.283a.25.25 0 0 1-.248.434l-.501-.286v.569a.25.25 0 0 1-.5 0v-.57l-.501.287a.25.25 0 0 1-.248-.434l.495-.283-.495-.283a.25.25 0 0 1 .248-.434l.501.286v-.569a.25.25 0 0 1 .25-.25m-2.75-2a.25.25 0 0 1 .25.25v.57l.5-.287a.25.25 0 0 1 .249.434l-.495.283.495.283a.25.25 0 0 1-.248.434l-.501-.286v.569a.25.25 0 1 1-.5 0v-.57l-.501.287a.25.25 0 0 1-.248-.434l.495-.283-.495-.283a.25.25 0 0 1 .248-.434l.501.286v-.569a.25.25 0 0 1 .25-.25m5.5 0a.25.25 0 0 1 .25.25v.57l.5-.287a.25.25 0 0 1 .249.434l-.495.283.495.283a.25.25 0 0 1-.248.434l-.501-.286v.569a.25.25 0 0 1-.5 0v-.57l-.501.287a.25.25 0 1 1-.248-.434l.495-.283-.495-.283a.25.25 0 0 1 .248-.434l.501.286v-.569a.25.25 0 0 1 .25-.25m-.22-7.223a5.001 5.001 0 0 0-9.499-1.004A3.5 3.5 0 1 0 3.5 10.25H13a3 3 0 0 0 .405-5.973" />
                             </svg>
                         </label>
+
+                        <input type="hidden" name="movie_name" id="movie_name">
+                        <input type="hidden" name="url" id="url">
+                        <input type="hidden" name="id" id="id"> 
+
+
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary float-end">Add</button>
