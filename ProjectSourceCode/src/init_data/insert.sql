@@ -7,3 +7,4 @@
 --     ('5', 'Thunderstorms', 'Horror'),
 --     ('6', 'Snowing', 'History'),
 --     ('7', 'Extreme', 'Action');
+

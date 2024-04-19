@@ -36,9 +36,3 @@ drop table if EXISTS users_to_movie_recs;
 CREATE TABLE
         users_to_movie_recs (user_id INT NOT NUll, movie_rec_id INT NOT NUll);
 
--- drop table if EXISTS weather;
--- CREATE TABLE weather_to_movies(
---         weather_id INT PRIMARY KEY NOT NUll,
---         weather_name VARCHAR(30) NOT NUll,
---         related_genre VARCHAR(30) NOT NULL
--- );
