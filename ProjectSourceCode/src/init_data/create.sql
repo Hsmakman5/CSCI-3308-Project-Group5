@@ -23,7 +23,7 @@ CREATE TABLE
                 movie_rec_id SERIAL PRIMARY KEY NOT NULL,
                 weather VARCHAR(30) NOT NUll,
                 mood VARCHAR(30) NOT NUll,
-                time TIME
+                watch_date DATE NOT NULL DEFAULT CURRENT_DATE
         );
 
 drop table if EXISTS movies_to_movie_recs;
