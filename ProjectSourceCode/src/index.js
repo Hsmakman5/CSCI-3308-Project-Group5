@@ -26,6 +26,10 @@ const hbs = handlebars.create({
     partialsDir: __dirname + '/views/partials',
 });
 
+Handlebars.registerHelper('ifEquals', function(arg1, arg2, options) {
+    return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
+});
+
 // database configuration
 const dbConfig = {
     host: 'db', // the database server
@@ -230,23 +234,23 @@ app.get('/addMovieRec', async (req, res) => {
             // the results will be displayed on the terminal if the docker containers are running // Send some parameters
             console.log();
 
-            if(movieAddMessage){
+            if (movieAddMessage) {
                 res.render('pages/addMovieRec', {
                     user: req.session.user,
                     movies: results.data.results,
                     error: false,
                     message: movieAddMessage
-                    
+
                 });
             }
-            else{
+            else {
                 res.render('pages/addMovieRec', {
                     user: req.session.user,
                     movies: results.data.results
                 });
 
             }
-            
+
         })
         .catch(error => {
             console.log(error)
@@ -262,25 +266,42 @@ app.post('/addMovieRec', async (req, res) => {
 
 
     const addMovie = "INSERT INTO movies (movie_id, movie_name, url) VALUES ($1, $2, $3) ON CONFLICT DO NOTHING"
-    const movieRec = "INSERT INTO movie_recs (weather, mood, time) VALUES ($1, $2, $3) RETURNING movie_rec_id"
+    const movieRec = "INSERT INTO movie_recs (weather, mood, watch_date) VALUES ($1, $2, $3) RETURNING movie_rec_id"
     const addUsersToTovieRecs = "INSERT INTO users_to_movie_recs (user_id, movie_rec_id) VALUES ($1, $2)"
     const addMoviesToMovieRecs = "INSERT INTO movies_to_movie_recs (movie_id, movie_rec_id) VALUES ($1, $2)"
 
     const data = await db.task(task => {
         return task.batch([
             task.none(addMovie, [movie_id, req.body.movie_name, req.body.url]),
-            task.one(movieRec, [req.body.weather, req.body.mood, req.body.time]),
-            task.none(addMoviesToMovieRecs, [req.session.user.id, movie_id])
+            task.one(movieRec, [req.body.weather, req.body.mood, req.body.watch_date]),
         ])
     })
 
-
-    db.none(addUsersToTovieRecs, [req.session.user.id, data[1].movie_rec_id]).then(() => {
+    db.task(task => {
+        return task.batch([
+            task.none(addUsersToTovieRecs, [req.session.user.id, data[1].movie_rec_id]),
+            task.none(addMoviesToMovieRecs, [movie_id, data[1].movie_rec_id])
+        ])
+    }).then(() => {
         movieAddMessage = "Succsesfully added " + req.body.movie_name + " to watched movies";
         res.redirect(req.get('referer'));
     })
 
 });
+
+app.get('/watchedMovies', (req, res) => {
+
+    const query = "SELECT *, TO_CHAR(watch_date, 'dd/mm/yyyy') FROM users INNER JOIN users_to_movie_recs ON users.user_id = users_to_movie_recs.user_id INNER JOIN movie_recs ON users_to_movie_recs.movie_rec_id = movie_recs.movie_rec_id INNER JOIN movies_to_movie_recs ON movie_recs.movie_rec_id = movies_to_movie_recs.movie_rec_id INNER JOIN movies ON movies_to_movie_recs.movie_id = movies.movie_id WHERE users.user_id = $1 ORDER BY watch_date DESC"
+    //const query = "SELECT * FROM users_to_movie_recs"
+    db.manyOrNone(query, req.session.user.id).then((data) => {
+        res.render("pages/watchedMovies", {
+            user: req.session.user,
+            movies: data
+        })
+    })
+
+
+})
 
 
 
