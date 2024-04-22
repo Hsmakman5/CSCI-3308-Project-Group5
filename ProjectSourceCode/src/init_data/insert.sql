@@ -12,7 +12,7 @@ INSERT INTO movies (movie_id, movie_name, url);
     ('475557', 'Joker', '/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg'),
     ('244786', 'Whiplash', '/7fn624j5lj3xTme2SgiLCeuedmO.jpg'),
     ('335977', 'Indiana Jones and the Dial of Destiny', '/Af4bXE63pVsb2FtbW8uYIyPBadD.jpg'),
-    ('157336', 'Interstellar', '/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg', '8.433'),
+    ('157336', 'Interstellar', '/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg'),
     ('22794', 'Cloudy with a Chance of Meatballs', '/qhOhIKf7QEyQ5dMrRUqs5eTX1Oq.jpg'),
     ('24428', 'The Avengers', '/RYMX2wcKCBAr24UyPD7xwmjaTn.jpg'),
     ('639933', 'The Northman', '/aSSJMnHknzKjlZ6zybwD7eyJ4Po.jpg');
