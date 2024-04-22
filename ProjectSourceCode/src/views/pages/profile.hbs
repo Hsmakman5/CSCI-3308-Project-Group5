@@ -1,16 +1,21 @@
-<div>
-    <h1> Profile:</h1>
-    <form class = "form-group" method="post" action="/login">
-    
-        <label for="text">Username:</label> 
-        <input type="text" class = "form-control"  name="username" /><br />
-    
-        <label for="text">Email:</label> 
-        <input type="text" class = "form-control"  name="email" /><br />
-        
-        <br/>
-        <label>logout?</label>
-        <a href = "/logout">Logout</a>
-    </form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <!-- Link to your stylesheet -->
+    <link rel="stylesheet" href="../../resources/css/style.css">
+</head>
+<body>
 
+<div class="profile-container">
+    <h2>Profile:</h2>
+    <ul>
+        <li class="nav-item">
+            <a class="nav-link" href="/watchedMovies">Watched Movies</a>
+        </li>
+    </ul>
+    <label>Logout?</label>
+    <a href="/logout" class="logout-link">Logout</a>
 </div>
