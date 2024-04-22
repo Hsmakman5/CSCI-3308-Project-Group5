@@ -5,9 +5,23 @@
     crossorigin="anonymous"></script>
 
 
+
+
 {{> message}}
+
+<style type="text/css">
+  body {
+    background: rgb(48, 60, 65) !important;
+  }
+  h1{
+    color: rgb(255, 255, 255);
+  }
+
+  /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
+</style>
+
 <div class="container">
-    <h1 class="fs-3">Add Previously Watched Movies</h1>
+    <h1 class="fs-3">Search movies to add to previously watched:</h1>
 
     <form class="form-inline" action="/addMovieRec" method="get">
         <div class="input-group mb-3">
