@@ -17,7 +17,8 @@ VALUES
     ('22794', 'Cloudy with a Chance of Meatballs', '/qhOhIKf7QEyQ5dMrRUqs5eTX1Oq.jpg'),
     ('24428', 'The Avengers', '/RYMX2wcKCBAr24UyPD7xwmjaTn.jpg'),
     ('639933', 'The Northman', '/aSSJMnHknzKjlZ6zybwD7eyJ4Po.jpg');
-
+/* 
+Temp commented out because of empty '' strings
 INSERT INTO movie_recs (movie_rec_id, weather, mood, watch_date)
 VALUES
     ('1', 'Rainy', 'Sad', ''),
@@ -27,7 +28,7 @@ VALUES
     ('5', 'Other/Extreme', 'Angry', ''),
     ('6', 'Cloudy', 'Happy', ''),
     ('7', 'Sunny', 'Happy', '');
-
+*/
 INSERT INTO movies_to_movie_recs (movie_id, movie_rec_id)
 VALUES
     ('475557','1'),
