@@ -106,6 +106,10 @@ app.get('/profile', (req, res) => {
     res.render('pages/profile');
 });
 
+//api route for profile page
+app.get('/watchedMovies', (req, res) => {
+    res.render('pages/watchedMovies');
+});
 
 app.post('/register', async (req, res) => {
     //hash the password using bcrypt library
