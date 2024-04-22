@@ -1,48 +1,92 @@
+<html>
 
+<head>
 
-<html >
-  <head >
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Home</title>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Home</title>
 
-        <link
-          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-          rel="stylesheet"
-          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-          crossorigin="anonymous"
-        />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
 
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-  
-    </head>
-   </head>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+  </head>
+</head>
 
 </body style="background-color: black;">
 
 <style type="text/css">
-  body { background: rgb(49, 48, 48) !important; } /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
-</style>
- 
+  body {
+    background: rgb(48, 60, 65) !important;
+  }
 
-<div class="btn-group" style ="float:right; margin-top: 40px; margin-right: 200px;">
+  /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
+</style>
+
+
+
+
+<div class="card-group" style="width: 57rem; margin:auto; margin-top: 1rem; float:left; margin-left: 10rem;">
+
+  <div class="card" style="width: 30rem;">
+    <img src="../../resources/img/Jaws_movie_poster.png" class="card-img-top" alt="temp Image Location">
+    <div class="card-body">
+
+      <center>
+        <h2 class="card-title" style="margin:auto"> Movie Name </h2>
+      </center>
+
+    </div>
+  </div>
+
+
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Recomended Movie: Jaws</h5>
+      <p class="card-text">A very brief description of the movie will go here: SHARK. Oh no theres a big shark and its
+        hungry and wants to eat people. They gonna try and get that shark but realize too late they may in fact, need
+        a bigger boat...</p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Movie length: 98 minutes</li>
+      <li class="list-group-item">Genre: Action</li>
+      <li class="list-group-item">Movie Rating: 10/10</li>
+      <li class="list-group-item">Weather Match: 6.8/10</li>
+    </ul>
+    <div class="card-body">
+     
+         <a href="#" class="btn btn-info" style="width: 21rem; margin:auto;margin-top: 20px; ">Next Movie</a>
+      <button type="button" class="btn btn-primary btn-lrg" style="width: 21rem; margin:auto; margin-top: 20px;">Random Movie</button>
+
+
+      
+      
+     
+    </div>
+  </div>
+</div>
+
+
+
+<div class="btn-group" style="float:right; margin-top: 40px; margin-right: 200px;">
   <button class="btn btn-success btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown">
     Current Weather
   </button>
   <ul class="dropdown-menu">
     <li><a class="dropdown-item" href="#">Sunny</a></li>
     <li><a class="dropdown-item" href="#">Raining</a></li>
-    <li><a class="dropdown-item" href="#">Snowing</a></li>
-    <li><a class="dropdown-item" href="#">Foggy</a></li>
     <li><a class="dropdown-item" href="#">Cloudy</a></li>
     <li><a class="dropdown-item" href="#">Thunderstorms</a></li>
-    <li><hr class="dropdown-divider"></li>
+    <li>
+      <hr class="dropdown-divider">
+    </li>
     <li><a class="dropdown-item" href="#">Other / Extreme</a></li>
   </ul>
 </div>
-<p id="datetime" style= "color:aquamarine; float:right; margin-top: 10px; margin-right: -200px;"></p>
+<p id="datetime" style="color:aquamarine; float:right; margin-top: 10px; margin-right: -200px;"></p>
 
 <script>
   // Get current date and time
@@ -55,27 +99,6 @@
 
 
 
+</body>
 
-<div class="card" style="width: 25rem; margin:auto; margin-top: 120px;">
-  <img src="../../resources/img/Jaws_movie_poster.png" class="card-img-top" alt="temp Image Location" >
-  <div class="card-body">
-    <h5 class="card-title">Recomended Movie: Jaws</h5>
-    <p class="card-text">A very brief description of the movie will go here: SHARK. Oh no theres a big shark and its hungry and wants to eat people. They gonna try and get that shark but realize too late they may in fact, need a bigger boat...</p>
-  </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">Movie length: 98 minutes</li>
-    <li class="list-group-item">Genre: Action</li>
-    <li class="list-group-item">Movie Rating: 10/10</li>
-    <li class="list-group-item">Weather Match: 6.8/10</li>
-  </ul>
-  <div class="card-body">
-    <a href="#" class="card-link">Save Movie</a>
-    <a href="#" class="card-link">Next Movie</a>
-  </div>
-</div>
-
-<button type="button" class="btn btn-outline-info btn-lrg" style="width: 25rem; margin:auto;">Random Movie</button>
-
-  </body>
 </html>
-
