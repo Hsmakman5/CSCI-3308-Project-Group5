@@ -310,14 +310,17 @@ app.get('/watchedMovies', (req, res) => {
 
 app.get('/findMovies', (req, res) => {
 
-    const query = "SELECT movies.*, ARRAY_AGG(movie_recs.mood) moods, ARRAY_AGG(movie_recs.weather) weather FROM movie_recs INNER JOIN movies_to_movie_recs ON movie_recs.movie_rec_id = movies_to_movie_recs.movie_rec_id INNER JOIN movies ON movies_to_movie_recs.movie_id = movies.movie_id WHERE movies.movie_id in (SELECT movies.movie_id FROM movies INNER JOIN movies_to_movie_recs ON movies.movie_id = movies_to_movie_recs.movie_id INNER JOIN movie_recs ON movies_to_movie_recs.movie_rec_id = movie_recs.movie_rec_id LEFT JOIN users_to_movie_recs ON movie_recs.movie_rec_id = users_to_movie_recs.movie_rec_id WHERE (movie_recs.mood = $1 OR movie_recs.weather = $2) AND users_to_movie_recs.user_id != $3) GROUP BY movies.movie_id "
-    //const query = "SELECT * FROM users_to_movie_recs"
+    const query = "SELECT movies.*, ARRAY_AGG(movie_recs.mood) moods, ARRAY_AGG(movie_recs.weather) weather FROM movie_recs INNER JOIN movies_to_movie_recs ON movie_recs.movie_rec_id = movies_to_movie_recs.movie_rec_id INNER JOIN movies ON movies_to_movie_recs.movie_id = movies.movie_id WHERE movies.movie_id in (SELECT movies.movie_id FROM movies INNER JOIN movies_to_movie_recs ON movies.movie_id = movies_to_movie_recs.movie_id INNER JOIN movie_recs ON movies_to_movie_recs.movie_rec_id = movie_recs.movie_rec_id LEFT JOIN users_to_movie_recs ON movie_recs.movie_rec_id = users_to_movie_recs.movie_rec_id WHERE (movie_recs.mood = $1 OR movie_recs.weather = $2) AND (users_to_movie_recs.user_id IS NULL OR users_to_movie_recs.user_id != $3)) GROUP BY movies.movie_id "
+    // const query = "SELECT movies.*, ARRAY_AGG(movie_recs.mood) moods, ARRAY_AGG(movie_recs.weather) weather FROM movie_recs INNER JOIN movies_to_movie_recs ON movie_recs.movie_rec_id = movies_to_movie_recs.movie_rec_id INNER JOIN movies ON movies_to_movie_recs.movie_id = movies.movie_id GROUP BY movies.movie_id "
+    // const query = "SELECT * FROM movies INNER JOIN movies_to_movie_recs ON movies.movie_id = movies_to_movie_recs.movie_id INNER JOIN movie_recs ON movies_to_movie_recs.movie_rec_id = movie_recs.movie_rec_id LEFT JOIN users_to_movie_recs ON movie_recs.movie_rec_id = users_to_movie_recs.movie_rec_id WHERE (movie_recs.mood = $1 OR movie_recs.weather = $2) AND (users_to_movie_recs.user_id IS NULL OR users_to_movie_recs.user_id != $3)"
+
 
 
 
 
     if (req.query.mood) {
         db.manyOrNone(query, [req.query.mood, req.query.weather, (req.query.hideWatchedMoveies? req.session.user.id : -1)]).then((data) => {
+            console.log(data);
             res.render("pages/findMovies", {
                 user: req.session.user,
                 movies: data,
