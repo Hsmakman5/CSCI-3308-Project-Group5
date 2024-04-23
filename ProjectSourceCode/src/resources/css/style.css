@@ -1,0 +1,46 @@
+/* Container styling */
+div.profile-container {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+/* Header styling */
+h2 {
+    color: #333;
+}
+
+/* List item styling */
+.nav-item {
+    list-style: none;
+}
+
+/* Link styling */
+.nav-link {
+    color: cornflowerblue;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.nav-link:hover {
+    color: #0056b3; /* Darker shade of cornflowerblue */
+}
+
+/* Label styling */
+label {
+    display: block;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+/* Logout link styling */
+.logout-link {
+    color: #ff0000; /* Red color */
+    text-decoration: none;
+}
+
+.logout-link:hover {
+    text-decoration: underline;
+}

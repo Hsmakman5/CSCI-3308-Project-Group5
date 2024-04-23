@@ -1,31 +1,31 @@
 {{> message}}
-<style>
-    form {
-        margin: auto;
-        padding-left: 350px ;
-        padding-right: 450px ;
+<style type="text/css">
+    body {
+        background: rgb(48, 60, 65) !important;
     }
-    h1 {
-        margin: auto;
-        padding-left: 350px ;
-        padding-right: 450px ;
-    }
+    /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
 </style>
-<div>
-    <h1> Register:</h1>
-    <form class = "form-group" method="post" action="/register">
-    
-        <label for="text">Username:</label> 
-        <input type="text" class = "form-control"  name="username" /><br />
-    
-        <label for="text">Password:</label> 
-        <input type="text" class = "form-control"  name="password" /><br />
-        
-        <button type="submit" class = "btn btn-primary"/> Register </button>
-    
-        <br/>
-        <label>If you already have an account: </label>
-        <a href = "/login"> login</a>
-    </form>
 
+
+
+
+
+<div class="card" Style=" height: 40rem;width:30rem; margin:auto; margin-top: 3rem; border:1px solid black; background-color:rgb(244, 244, 244)">
+    <div class="card-body">
+       <center><h1 Style="margin-top: 1rem;"> Sign Up</h1></center> 
+        <form class="form-group" method="post" action="/register">
+
+            <label for="text" Style="margin-top: 2rem; font-size: 1.8em;" >Username:</label>
+            <input type="text" class="form-control" name="username" /><br />
+
+            <label for="text" Style=" font-size: 1.8em;">Password: </label>
+            <input type="text" class="form-control" name="password" Style="btn-border-width:10px;"/><br />
+
+           <center> <button type="submit" class="btn btn-info" Style=" margin-top: 3rem; width:18rem; font-size: 2em;"/> Register </button> </center>
+
+            <br />
+            <label Style="margin-top: 7rem; margin-left:8rem;">If you already have an account: </label>
+            <a href="/login"> login</a>
+        </form>
+    </div>
 </div>

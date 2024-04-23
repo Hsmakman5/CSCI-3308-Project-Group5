@@ -118,11 +118,15 @@ app.post('/register', async (req, res) => {
         db.oneOrNone(query, [req.body.username, hash]).then((data) => {
             res.status(200);
             res.redirect('/login');
+            res.render('pages/login', {
+                error: true,
+                message: "Account sucessfuly created!"
+            })
         }
         ).catch(err => {
             res.render('pages/register', {
                 error: true,
-                message: "Invalid Input"
+                message: "Invalid Input (Username or password may already exist)"
             })
 
             res.status(400);
@@ -152,7 +156,7 @@ app.post('/login', async (req, res) => {
         })
         .catch(function (err) {
             console.log(err);
-            res.render('pages/register', {
+            res.render('pages/login', {
                 error: true,
                 message: 'Username not found',
             });
@@ -160,18 +164,19 @@ app.post('/login', async (req, res) => {
         }
         )
 
-
-    const match = await bcrypt.compare(req.body.password, user.password);
-    if (!match) {
-        res.render('pages/login', {
-            error: true,
-            message: "Incorrect username or password"
-        })
-    }
-    else {
-        req.session.user = user;
-        req.session.save();
-        res.redirect("/home");
+    if (user.username && user.password) {
+        const match = await bcrypt.compare(req.body.password, user.password);
+        if (!match) {
+            res.render('pages/login', {
+                error: true,
+                message: "Incorrect username or password"
+            })
+        }
+        else {
+            req.session.user = user;
+            req.session.save();
+            res.redirect("/home");
+        }
     }
 });
 
@@ -332,9 +337,10 @@ app.get('/findMovies', (req, res) => {
 
 })
 
-
-
-
+app.get('/logout', (req, res) => {
+    req.session.destroy();
+    res.render('pages/logout');
+  });
 
 
 // *****************************************************
