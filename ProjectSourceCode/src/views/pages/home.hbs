@@ -26,66 +26,258 @@
   /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
 </style>
 
+<div class="container" style="color: rgb(224, 224, 224); font-size:2em;">
+  <form method="get" action="/findMovies">
+    <div class="row p-4">
+      <div class="col-sm-auto">
+        <label class="form-label">Mood:</label>
+        <input type="radio" class="btn-check" name="mood" value="happy" id="happy" autocomplete="off" {{#if
+          mood}}{{#ifEquals mood "happy" }}checked{{/ifEquals}}{{else}}checked{{/if}}>
+        <label class="btn" for="happy">
+          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+            class="bi bi-emoji-smile-fill" style="fill:rgb(254, 205, 67);" viewBox="0 0 16 16">
+            <path
+              d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16M7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5M4.285 9.567a.5.5 0 0 1 .683.183A3.5 3.5 0 0 0 8 11.5a3.5 3.5 0 0 0 3.032-1.75.5.5 0 1 1 .866.5A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1-3.898-2.25.5.5 0 0 1 .183-.683M10 8c-.552 0-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5S10.552 8 10 8" />
+          </svg>
+        </label>
+        <input type="radio" class="btn-check" name="mood" value="netural" id="netural" autocomplete="off" {{#ifEquals
+          mood "netural" }}checked{{/ifEquals}}>
+        <label class="btn" for="netural">
+          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+            class="bi bi-emoji-neutral-fill" style="fill:rgb(113, 249, 136);" viewBox="0 0 16 16">
+            <path
+              d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16M7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5m-3 4a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5M10 8c-.552 0-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5S10.552 8 10 8" />
+          </svg>
+        </label>
+
+        <input type="radio" class="btn-check" name="mood" value="sad" id="sad" autocomplete="off" {{#ifEquals mood "sad"
+          }}checked{{/ifEquals}}>
+        <label class="btn" for="sad">
+          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+            class="bi bi-emoji-frown-fill" style="fill:rgb(87, 230, 235);" viewBox="0 0 16 16">
+            <path
+              d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16M7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5m-2.715 5.933a.5.5 0 0 1-.183-.683A4.5 4.5 0 0 1 8 9.5a4.5 4.5 0 0 1 3.898 2.25.5.5 0 0 1-.866.5A3.5 3.5 0 0 0 8 10.5a3.5 3.5 0 0 0-3.032 1.75.5.5 0 0 1-.683.183M10 8c-.552 0-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5S10.552 8 10 8" />
+          </svg>
+        </label>
+
+        <input type="radio" class="btn-check" name="mood" value="mad" id="mad" autocomplete="off" {{#ifEquals mood "mad"
+          }}checked{{/ifEquals}}>
+        <label class="btn" for="mad">
+          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+            class="bi bi-emoji-angry-fill" style="fill:rgb(255, 106, 106);" viewBox="0 0 16 16">
+            <path
+              d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16M4.053 4.276a.5.5 0 0 1 .67-.223l2 1a.5.5 0 0 1 .166.76c.071.206.111.44.111.687C7 7.328 6.552 8 6 8s-1-.672-1-1.5c0-.408.109-.778.285-1.049l-1.009-.504a.5.5 0 0 1-.223-.67zm.232 8.157a.5.5 0 0 1-.183-.683A4.5 4.5 0 0 1 8 9.5a4.5 4.5 0 0 1 3.898 2.25.5.5 0 1 1-.866.5A3.5 3.5 0 0 0 8 10.5a3.5 3.5 0 0 0-3.032 1.75.5.5 0 0 1-.683.183M10 8c-.552 0-1-.672-1-1.5 0-.247.04-.48.11-.686a.502.502 0 0 1 .166-.761l2-1a.5.5 0 1 1 .448.894l-1.009.504c.176.27.285.64.285 1.049 0 .828-.448 1.5-1 1.5" />
+          </svg>
+        </label>
+      </div>
 
 
 
-<div class="card-group" style="width: 57rem; margin:auto; margin-top: 1rem; float:left; margin-left: 10rem;">
 
-  <div class="card" style="width: 30rem;">
-    <img src="../../resources/img/Jaws_movie_poster.png" class="card-img-top" alt="temp Image Location">
-    <div class="card-body">
+      <div class="col-sm-auto" style="margin-left:5rem;">
+        <label class="form-label">Weather:</label>
+        <input type="radio" class="btn-check" name="weather" value="sunny" id="sunny" autocomplete="off" {{#if
+          weather}}{{#ifEquals weather "sunny" }}checked{{/ifEquals}}{{else}}checked{{/if}}>
+        <label class="btn" for="sunny">
+          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-sun-fill"
+            style="fill:rgb(254, 205, 67);" viewBox="0 0 16 16">
+            <path
+              d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0m0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13m8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5M3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8m10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0m-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0m9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707M4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708" />
+          </svg>
+        </label>
 
-      <center>
-        <h2 class="card-title" style="margin:auto"> Movie Name </h2>
-      </center>
+        <input type="radio" class="btn-check" name="weather" id="cloudy" value="cloudy" autocomplete="off" {{#ifEquals
+          weather "cloudy" }}checked{{/ifEquals}}>
+        <label class="btn" for="cloudy">
+          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+            class="bi bi-cloud-sun-fill" style="fill:rgb(220, 217, 189);" viewBox="0 0 16 16">
+            <path d="M11.473 11a4.5 4.5 0 0 0-8.72-.99A3 3 0 0 0 3 16h8.5a2.5 2.5 0 0 0 0-5z" />
+            <path
+              d="M10.5 1.5a.5.5 0 0 0-1 0v1a.5.5 0 0 0 1 0zm3.743 1.964a.5.5 0 1 0-.707-.707l-.708.707a.5.5 0 0 0 .708.708zm-7.779-.707a.5.5 0 0 0-.707.707l.707.708a.5.5 0 1 0 .708-.708zm1.734 3.374a2 2 0 1 1 3.296 2.198q.3.423.516.898a3 3 0 1 0-4.84-3.225q.529.017 1.028.129m4.484 4.074c.6.215 1.125.59 1.522 1.072a.5.5 0 0 0 .039-.742l-.707-.707a.5.5 0 0 0-.854.377M14.5 6.5a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1z" />
+          </svg>
+        </label>
+
+        <input type="radio" class="btn-check" name="weather" id="rain" value="rain" autocomplete="off" {{#ifEquals
+          weather "rain" }}checked{{/ifEquals}}>
+        <label class="btn" for="rain">
+          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+            class="bi bi-cloud-rain-fill" style="fill:rgb(75, 157, 239);" viewBox="0 0 16 16">
+            <path
+              d="M4.158 12.025a.5.5 0 0 1 .316.633l-.5 1.5a.5.5 0 1 1-.948-.316l.5-1.5a.5.5 0 0 1 .632-.317m3 0a.5.5 0 0 1 .316.633l-1 3a.5.5 0 1 1-.948-.316l1-3a.5.5 0 0 1 .632-.317m3 0a.5.5 0 0 1 .316.633l-.5 1.5a.5.5 0 1 1-.948-.316l.5-1.5a.5.5 0 0 1 .632-.317m3 0a.5.5 0 0 1 .316.633l-1 3a.5.5 0 1 1-.948-.316l1-3a.5.5 0 0 1 .632-.317m.247-6.998a5.001 5.001 0 0 0-9.499-1.004A3.5 3.5 0 1 0 3.5 11H13a3 3 0 0 0 .405-5.973" />
+          </svg>
+        </label>
+
+        <input type="radio" class="btn-check" name="weather" id="snow" value="snow" autocomplete="off" {{#ifEquals
+          weather "snow" }}checked{{/ifEquals}}>
+        <label class="btn" for="snow">
+          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+            class="bi bi-cloud-snow-fill" style="fill:rgb(215, 234, 244);" viewBox="0 0 16 16">
+            <path
+              d="M2.625 11.5a.25.25 0 0 1 .25.25v.57l.501-.287a.25.25 0 0 1 .248.434l-.495.283.495.283a.25.25 0 0 1-.248.434l-.501-.286v.569a.25.25 0 1 1-.5 0v-.57l-.501.287a.25.25 0 0 1-.248-.434l.495-.283-.495-.283a.25.25 0 0 1 .248-.434l.501.286v-.569a.25.25 0 0 1 .25-.25m2.75 2a.25.25 0 0 1 .25.25v.57l.5-.287a.25.25 0 0 1 .249.434l-.495.283.495.283a.25.25 0 0 1-.248.434l-.501-.286v.569a.25.25 0 1 1-.5 0v-.57l-.501.287a.25.25 0 0 1-.248-.434l.495-.283-.495-.283a.25.25 0 0 1 .248-.434l.501.286v-.569a.25.25 0 0 1 .25-.25m5.5 0a.25.25 0 0 1 .25.25v.57l.5-.287a.25.25 0 0 1 .249.434l-.495.283.495.283a.25.25 0 0 1-.248.434l-.501-.286v.569a.25.25 0 0 1-.5 0v-.57l-.501.287a.25.25 0 0 1-.248-.434l.495-.283-.495-.283a.25.25 0 0 1 .248-.434l.501.286v-.569a.25.25 0 0 1 .25-.25m-2.75-2a.25.25 0 0 1 .25.25v.57l.5-.287a.25.25 0 0 1 .249.434l-.495.283.495.283a.25.25 0 0 1-.248.434l-.501-.286v.569a.25.25 0 1 1-.5 0v-.57l-.501.287a.25.25 0 0 1-.248-.434l.495-.283-.495-.283a.25.25 0 0 1 .248-.434l.501.286v-.569a.25.25 0 0 1 .25-.25m5.5 0a.25.25 0 0 1 .25.25v.57l.5-.287a.25.25 0 0 1 .249.434l-.495.283.495.283a.25.25 0 0 1-.248.434l-.501-.286v.569a.25.25 0 0 1-.5 0v-.57l-.501.287a.25.25 0 1 1-.248-.434l.495-.283-.495-.283a.25.25 0 0 1 .248-.434l.501.286v-.569a.25.25 0 0 1 .25-.25m-.22-7.223a5.001 5.001 0 0 0-9.499-1.004A3.5 3.5 0 1 0 3.5 10.25H13a3 3 0 0 0 .405-5.973" />
+          </svg>
+        </label>
+
+
+
+      </div>
+      <div class="col-md">
+        <div class="form-check form-switch float-end">
+          <input class="form-check-input" type="checkbox" role="switch" id="hideWatchedMoveies"
+            name="hideWatchedMoveies" {{#if hideWatchedMoveies}}checked{{/if}}>
+          <label class="form-check-label" for="hideWatchedMoveies" style="font-size:.5em;">Hide Watched Movies</label>
+        </div>
+      </div>
+
 
     </div>
+  </form>
+
+
+  <div class="row row-cols-1 row-cols-md-3 g-3">
+    {{#each movies}}
+
+
+    <div class="col">
+      <div class="card">
+        <img src="https://image.tmdb.org/t/p/w400{{url}}" class="card-img-top img-fluid">
+        <div class="card-body">
+          <h5 class="card-title">{{title}}</h5>
+
+
+          <div class="col">
+
+
+            {{#each moods}}
+            {{#ifEquals this "happy"}}
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" {{#ifEquals ../../mood "happy" }}fill="blue"
+              {{/ifEquals}} class="bi bi-emoji-smile-fill" viewBox="0 0 16 16">
+              <path
+                d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16M7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5M4.285 9.567a.5.5 0 0 1 .683.183A3.5 3.5 0 0 0 8 11.5a3.5 3.5 0 0 0 3.032-1.75.5.5 0 1 1 .866.5A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1-3.898-2.25.5.5 0 0 1 .183-.683M10 8c-.552 0-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5S10.552 8 10 8" />
+            </svg>
+            {{/ifEquals}}
+            {{#ifEquals this "netural"}}
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" {{#ifEquals ../../mood "netural"
+              }}fill="blue" {{/ifEquals}} class="bi bi-emoji-neutral-fill" viewBox="0 0 16 16">
+              <path
+                d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16M7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5m-3 4a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5M10 8c-.552 0-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5S10.552 8 10 8" />
+            </svg>
+            {{/ifEquals}}
+            {{#ifEquals this "sad"}}
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" {{#ifEquals ../../mood "sad" }}fill="blue"
+              {{/ifEquals}} class="bi bi-emoji-frown-fill" viewBox="0 0 16 16">
+              <path
+                d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16M7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5m-2.715 5.933a.5.5 0 0 1-.183-.683A4.5 4.5 0 0 1 8 9.5a4.5 4.5 0 0 1 3.898 2.25.5.5 0 0 1-.866.5A3.5 3.5 0 0 0 8 10.5a3.5 3.5 0 0 0-3.032 1.75.5.5 0 0 1-.683.183M10 8c-.552 0-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5S10.552 8 10 8" />
+            </svg>
+            {{/ifEquals}}
+            {{#ifEquals this "mad"}}
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" {{#ifEquals ../../mood "mad" }}fill="blue"
+              {{/ifEquals}} class="bi bi-emoji-angry-fill" viewBox="0 0 16 16">
+              <path
+                d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16M4.053 4.276a.5.5 0 0 1 .67-.223l2 1a.5.5 0 0 1 .166.76c.071.206.111.44.111.687C7 7.328 6.552 8 6 8s-1-.672-1-1.5c0-.408.109-.778.285-1.049l-1.009-.504a.5.5 0 0 1-.223-.67zm.232 8.157a.5.5 0 0 1-.183-.683A4.5 4.5 0 0 1 8 9.5a4.5 4.5 0 0 1 3.898 2.25.5.5 0 1 1-.866.5A3.5 3.5 0 0 0 8 10.5a3.5 3.5 0 0 0-3.032 1.75.5.5 0 0 1-.683.183M10 8c-.552 0-1-.672-1-1.5 0-.247.04-.48.11-.686a.502.502 0 0 1 .166-.761l2-1a.5.5 0 1 1 .448.894l-1.009.504c.176.27.285.64.285 1.049 0 .828-.448 1.5-1 1.5" />
+            </svg>
+            {{/ifEquals}}
+            {{/each}}
+
+
+
+          </div>
+
+          <div class="col">
+            {{#each weather}}
+
+            {{#ifEquals this "sunny"}}
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" {{#ifEquals ../../weather "sunny"
+              }}fill="blue" {{/ifEquals}} class="bi bi-sun-fill" viewBox="0 0 16 16">
+              <path
+                d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0m0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13m8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5M3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8m10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0m-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0m9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707M4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708" />
+            </svg>
+
+            {{/ifEquals}}
+            {{#ifEquals this "cloudy"}}
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" {{#ifEquals ../../weather "cloudy"
+              }}fill="blue" {{/ifEquals}} class="bi bi-cloud-sun-fill" viewBox="0 0 16 16">
+              <path d="M11.473 11a4.5 4.5 0 0 0-8.72-.99A3 3 0 0 0 3 16h8.5a2.5 2.5 0 0 0 0-5z" />
+              <path
+                d="M10.5 1.5a.5.5 0 0 0-1 0v1a.5.5 0 0 0 1 0zm3.743 1.964a.5.5 0 1 0-.707-.707l-.708.707a.5.5 0 0 0 .708.708zm-7.779-.707a.5.5 0 0 0-.707.707l.707.708a.5.5 0 1 0 .708-.708zm1.734 3.374a2 2 0 1 1 3.296 2.198q.3.423.516.898a3 3 0 1 0-4.84-3.225q.529.017 1.028.129m4.484 4.074c.6.215 1.125.59 1.522 1.072a.5.5 0 0 0 .039-.742l-.707-.707a.5.5 0 0 0-.854.377M14.5 6.5a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1z" />
+            </svg>
+
+            {{/ifEquals}}
+            {{#ifEquals this "rain"}}
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" {{#ifEquals ../../weather "rain"
+              }}fill="blue" {{/ifEquals}} class="bi bi-cloud-rain-fill" viewBox="0 0 16 16">
+              <path
+                d="M4.158 12.025a.5.5 0 0 1 .316.633l-.5 1.5a.5.5 0 1 1-.948-.316l.5-1.5a.5.5 0 0 1 .632-.317m3 0a.5.5 0 0 1 .316.633l-1 3a.5.5 0 1 1-.948-.316l1-3a.5.5 0 0 1 .632-.317m3 0a.5.5 0 0 1 .316.633l-.5 1.5a.5.5 0 1 1-.948-.316l.5-1.5a.5.5 0 0 1 .632-.317m3 0a.5.5 0 0 1 .316.633l-1 3a.5.5 0 1 1-.948-.316l1-3a.5.5 0 0 1 .632-.317m.247-6.998a5.001 5.001 0 0 0-9.499-1.004A3.5 3.5 0 1 0 3.5 11H13a3 3 0 0 0 .405-5.973" />
+            </svg>
+            {{/ifEquals}}
+            {{#ifEquals this "snow"}}
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" {{#ifEquals ../../weather "snow"
+              }}fill="blue" {{/ifEquals}} class="bi bi-cloud-snow-fill" viewBox="0 0 16 16">
+              <path
+                d="M2.625 11.5a.25.25 0 0 1 .25.25v.57l.501-.287a.25.25 0 0 1 .248.434l-.495.283.495.283a.25.25 0 0 1-.248.434l-.501-.286v.569a.25.25 0 1 1-.5 0v-.57l-.501.287a.25.25 0 0 1-.248-.434l.495-.283-.495-.283a.25.25 0 0 1 .248-.434l.501.286v-.569a.25.25 0 0 1 .25-.25m2.75 2a.25.25 0 0 1 .25.25v.57l.5-.287a.25.25 0 0 1 .249.434l-.495.283.495.283a.25.25 0 0 1-.248.434l-.501-.286v.569a.25.25 0 1 1-.5 0v-.57l-.501.287a.25.25 0 0 1-.248-.434l.495-.283-.495-.283a.25.25 0 0 1 .248-.434l.501.286v-.569a.25.25 0 0 1 .25-.25m5.5 0a.25.25 0 0 1 .25.25v.57l.5-.287a.25.25 0 0 1 .249.434l-.495.283.495.283a.25.25 0 0 1-.248.434l-.501-.286v.569a.25.25 0 0 1-.5 0v-.57l-.501.287a.25.25 0 0 1-.248-.434l.495-.283-.495-.283a.25.25 0 0 1 .248-.434l.501.286v-.569a.25.25 0 0 1 .25-.25m-2.75-2a.25.25 0 0 1 .25.25v.57l.5-.287a.25.25 0 0 1 .249.434l-.495.283.495.283a.25.25 0 0 1-.248.434l-.501-.286v.569a.25.25 0 1 1-.5 0v-.57l-.501.287a.25.25 0 0 1-.248-.434l.495-.283-.495-.283a.25.25 0 0 1 .248-.434l.501.286v-.569a.25.25 0 0 1 .25-.25m5.5 0a.25.25 0 0 1 .25.25v.57l.5-.287a.25.25 0 0 1 .249.434l-.495.283.495.283a.25.25 0 0 1-.248.434l-.501-.286v.569a.25.25 0 0 1-.5 0v-.57l-.501.287a.25.25 0 1 1-.248-.434l.495-.283-.495-.283a.25.25 0 0 1 .248-.434l.501.286v-.569a.25.25 0 0 1 .25-.25m-.22-7.223a5.001 5.001 0 0 0-9.499-1.004A3.5 3.5 0 1 0 3.5 10.25H13a3 3 0 0 0 .405-5.973" />
+            </svg>
+            {{/ifEquals}}
+            {{/each}}
+          </div>
+
+        </div>
+      </div>
+    </div>
+    {{/each}}
   </div>
 
 
-  <div class="card">
-    <div class="card-body">
-      <h5 class="card-title">Recomended Movie: Jaws</h5>
-      <p class="card-text">A very brief description of the movie will go here: SHARK. Oh no theres a big shark and its
-        hungry and wants to eat people. They gonna try and get that shark but realize too late they may in fact, need
-        a bigger boat...</p>
+
+  <div class="card-group" style="width: 57rem; margin:auto; margin-top: 1rem; ">
+
+    <div class="card" style="width: 30rem;">
+      <img src="../../resources/img/Jaws_movie_poster.png" class="card-img-top" alt="temp Image Location">
+      <div class="card-body">
+
+        <center>
+          <h2 class="card-title" style="margin:auto" style="font-size:1.3em"> Movie Name </h2>
+        </center>
+
+      </div>
     </div>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item">Movie length: 98 minutes</li>
-      <li class="list-group-item">Genre: Action</li>
-      <li class="list-group-item">Movie Rating: 10/10</li>
-      <li class="list-group-item">Weather Match: 6.8/10</li>
-    </ul>
-    <div class="card-body">
-     
-         <a href="#" class="btn btn-info" style="width: 21rem; margin:auto;margin-top: 20px; ">Next Movie</a>
-      <button type="button" class="btn btn-primary btn-lrg" style="width: 21rem; margin:auto; margin-top: 20px;">Random Movie</button>
 
 
-      
-      
-     
+    <div class="card">
+      <div class="card-body" style="font-size:.5em">
+        <h5 class="card-title" style="font-size:2em">Recomended Movie: Jaws</h5>
+        <p class="card-text">A very brief description of the movie will go here: SHARK. Oh no theres a big shark and its
+          hungry and wants to eat people. They gonna try and get that shark but realize too late they may in fact, need
+          a bigger boat...</p>
+      </div>
+      <ul class="list-group list-group-flush" style="font-size:.5em">
+        <li class="list-group-item">Movie length: 98 minutes</li>
+        <li class="list-group-item">Genre: Action</li>
+        <li class="list-group-item">Movie Rating: 10/10</li>
+        <li class="list-group-item">Weather Match: 6.8/10</li>
+      </ul>
+      <div class="card-body">
+
+
+        <div class="col-sm">
+
+
+          <button type="submit" class="btn btn-info float-end" style="font-size:1em; margin-right:3rem; width:20rem">New Movie</button>
+          <button type="submit" class="btn btn-success float-end" style="font-size:.8em; margin-right:3.8rem; margin-top:1rem; color:rgb(0, 0, 0); fill:rgb(107, 46, 46);">Add to Watched Movies</button>
+
+        </div>
+
+
+
+
+      </div>
     </div>
   </div>
+
 </div>
 
 
 
-<div class="btn-group" style="float:right; margin-top: 40px; margin-right: 200px;">
-  <button class="btn btn-success btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown">
-    Current Weather
-  </button>
-  <ul class="dropdown-menu">
-    <li><a class="dropdown-item" href="#">Sunny</a></li>
-    <li><a class="dropdown-item" href="#">Raining</a></li>
-    <li><a class="dropdown-item" href="#">Cloudy</a></li>
-    <li><a class="dropdown-item" href="#">Thunderstorms</a></li>
-    <li>
-      <hr class="dropdown-divider">
-    </li>
-    <li><a class="dropdown-item" href="#">Other / Extreme</a></li>
-  </ul>
-</div>
+
+
 <p id="datetime" style="color:aquamarine; float:right; margin-top: 10px; margin-right: -200px;"></p>
 
 <script>
