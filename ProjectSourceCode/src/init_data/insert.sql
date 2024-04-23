@@ -1,13 +1,3 @@
-
--- INSERT INTO weather (weather_id, weather_name, related_genre);
---     ('1', 'Sunny', 'Comedy'),
---     ('2', 'Raining', 'Romance'),
---     ('3', 'Cloudy', 'Drama'),
---     ('4', 'Foggy', 'Science Fiction'),
---     ('5', 'Thunderstorms', 'Horror'),
---     ('6', 'Snowing', 'History'),
---     ('7', 'Extreme', 'Action');
-
 INSERT INTO movies (movie_id, movie_name, url)
 VALUES
     ('475557', 'Joker', '/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg'),
@@ -17,18 +7,18 @@ VALUES
     ('22794', 'Cloudy with a Chance of Meatballs', '/qhOhIKf7QEyQ5dMrRUqs5eTX1Oq.jpg'),
     ('24428', 'The Avengers', '/RYMX2wcKCBAr24UyPD7xwmjaTn.jpg'),
     ('639933', 'The Northman', '/aSSJMnHknzKjlZ6zybwD7eyJ4Po.jpg');
-/* 
-Temp commented out because of empty '' strings
-INSERT INTO movie_recs (movie_rec_id, weather, mood, watch_date)
+ 
+
+INSERT INTO movie_recs (movie_rec_id, weather, mood)
 VALUES
-    ('1', 'Rainy', 'Sad', ''),
-    ('2', 'Cloudy', 'Neutral', ''),
-    ('3', 'Sunny', 'Happy', ''),
-    ('4', 'Other/Extreme', 'Neutral', ''),
-    ('5', 'Other/Extreme', 'Angry', ''),
-    ('6', 'Cloudy', 'Happy', ''),
-    ('7', 'Sunny', 'Happy', '');
-*/
+    ('1', 'Rainy', 'Sad'),
+    ('2', 'Cloudy', 'Neutral'),
+    ('3', 'Sunny', 'Happy'),
+    ('4', 'Snow', 'Neutral'),
+    ('5', 'Snow', 'Angry'),
+    ('6', 'Cloudy', 'Happy'),
+    ('7', 'Sunny', 'Happy');
+
 INSERT INTO movies_to_movie_recs (movie_id, movie_rec_id)
 VALUES
     ('475557','1'),
