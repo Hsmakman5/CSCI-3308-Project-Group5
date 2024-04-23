@@ -101,10 +101,6 @@ app.get('/register', (req, res) => {
     res.render('pages/register');
 });
 
-//api route for profile page
-app.get('/profile', (req, res) => {
-    res.render('pages/profile');
-});
 
 
 app.post('/register', async (req, res) => {
@@ -216,6 +212,13 @@ app.get('/logout', (req, res) => {
     req.session.destroy();
     res.render('pages/logout');
 })
+//api route for profile page
+app.get('/profile', (req, res) => {
+    res.render('pages/profile', {
+        user: req.session.user
+    });
+});
+
 
 
 let movieAddMessage = undefined;
@@ -319,7 +322,7 @@ app.get('/findMovies', (req, res) => {
 
 
     if (req.query.mood) {
-        db.manyOrNone(query, [req.query.mood, req.query.weather, (req.query.hideWatchedMoveies? req.session.user.id : -1)]).then((data) => {
+        db.manyOrNone(query, [req.query.mood, req.query.weather, (req.query.hideWatchedMoveies ? req.session.user.id : -1)]).then((data) => {
             console.log(data);
             res.render("pages/findMovies", {
                 user: req.session.user,
@@ -343,7 +346,7 @@ app.get('/findMovies', (req, res) => {
 app.get('/logout', (req, res) => {
     req.session.destroy();
     res.render('pages/logout');
-  });
+});
 
 
 // *****************************************************
