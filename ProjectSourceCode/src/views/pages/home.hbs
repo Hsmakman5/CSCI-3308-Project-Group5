@@ -26,8 +26,9 @@
   /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
 </style>
 
+
 <div class="container" style="color: rgb(224, 224, 224); font-size:2em;">
-  <form method="get" action="/findMovies">
+  <form method="get" action="/findMoviesHome">
     <div class="row p-4">
       <div class="col-sm-auto">
         <label class="form-label">Mood:</label>
@@ -130,13 +131,49 @@
 
 
     </div>
+
+
+    <div class="card-group" style="width: 57rem; margin:auto; margin-top: 1rem; ">
+
+      <div class="card" style="width: 30rem;">
+        <img src="../../resources/img/Jaws_movie_poster.png" class="card-img-top" alt="temp Image Location">
+        <div class="card-body">
+
+          <center>
+            <h2 class="card-title" style="margin:auto" style="font-size:1.3em"> Movie Name </h2>
+          </center>
+
+        </div>
+      </div>
+
+
+      <div class="card">
+        <div class="card-body" style="font-size:.5em">
+          <h5 class="card-title" style="font-size:2em">Recomended Movie: Jaws</h5>
+          <p class="card-text">A very brief description of the movie will go here: SHARK. Oh no theres a big shark and
+            its
+            hungry and wants to eat people. They gonna try and get that shark but realize too late they may in fact,
+            need
+            a bigger boat...</p>
+        </div>
+        <ul class="list-group list-group-flush" style="font-size:.5em">
+          <li class="list-group-item">Movie length: 98 minutes</li>
+          <li class="list-group-item">Genre: Action</li>
+          <li class="list-group-item">Movie Rating: 10/10</li>
+          <li class="list-group-item">Weather Match: 6.8/10</li>
+        </ul>
+        <div class="card-body">
+          <div class="col-sm">
+            <button type="submit" class="btn btn-info float-end"
+              style="font-size:1em; margin-right:3rem; width:20rem">New Movie</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </form>
 
 
   <div class="row row-cols-1 row-cols-md-3 g-3">
-    {{#each movies}}
-
-
     <div class="col">
       <div class="card">
         <img src="https://image.tmdb.org/t/p/w400{{url}}" class="card-img-top img-fluid">
@@ -222,54 +259,7 @@
         </div>
       </div>
     </div>
-    {{/each}}
-  </div>
 
-
-
-  <div class="card-group" style="width: 57rem; margin:auto; margin-top: 1rem; ">
-
-    <div class="card" style="width: 30rem;">
-      <img src="../../resources/img/Jaws_movie_poster.png" class="card-img-top" alt="temp Image Location">
-      <div class="card-body">
-
-        <center>
-          <h2 class="card-title" style="margin:auto" style="font-size:1.3em"> Movie Name </h2>
-        </center>
-
-      </div>
-    </div>
-
-
-    <div class="card">
-      <div class="card-body" style="font-size:.5em">
-        <h5 class="card-title" style="font-size:2em">Recomended Movie: Jaws</h5>
-        <p class="card-text">A very brief description of the movie will go here: SHARK. Oh no theres a big shark and its
-          hungry and wants to eat people. They gonna try and get that shark but realize too late they may in fact, need
-          a bigger boat...</p>
-      </div>
-      <ul class="list-group list-group-flush" style="font-size:.5em">
-        <li class="list-group-item">Movie length: 98 minutes</li>
-        <li class="list-group-item">Genre: Action</li>
-        <li class="list-group-item">Movie Rating: 10/10</li>
-        <li class="list-group-item">Weather Match: 6.8/10</li>
-      </ul>
-      <div class="card-body">
-
-
-        <div class="col-sm">
-
-
-          <button type="submit" class="btn btn-info float-end" style="font-size:1em; margin-right:3rem; width:20rem">New Movie</button>
-          <button type="submit" class="btn btn-success float-end" style="font-size:.8em; margin-right:3.8rem; margin-top:1rem; color:rgb(0, 0, 0); fill:rgb(107, 46, 46);">Add to Watched Movies</button>
-
-        </div>
-
-
-
-
-      </div>
-    </div>
   </div>
 
 </div>
@@ -278,7 +268,7 @@
 
 
 
-<p id="datetime" style="color:aquamarine; float:right; margin-top: 10px; margin-right: -200px;"></p>
+<p id="datetime" style="color:aquamarine; float:right; margin-top: 10px; "></p>
 
 <script>
   // Get current date and time
