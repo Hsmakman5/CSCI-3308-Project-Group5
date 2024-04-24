@@ -142,7 +142,7 @@
 
       <div>
         {{#each movies}}
-        <div class="carousel-item active" style="maring:auto; ">
+        <div class="carousel-item {{#if @first}}active{{/if}}" style="maring:auto; ">
           <img src="https://image.tmdb.org/t/p/w400{{url}}" class="d-block w-20" style="margin-left:10rem;">
 
           <div class="carousel-caption d-none d-md-block" style="margin-left: 17rem; margin-bottom: 30rem;">
