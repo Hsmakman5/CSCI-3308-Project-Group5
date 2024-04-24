@@ -101,10 +101,6 @@ app.get('/register', (req, res) => {
     res.render('pages/register');
 });
 
-//api route for profile page
-app.get('/profile', (req, res) => {
-    res.render('pages/profile');
-});
 
 
 app.post('/register', async (req, res) => {
@@ -216,6 +212,13 @@ app.get('/logout', (req, res) => {
     req.session.destroy();
     res.render('pages/logout');
 })
+//api route for profile page
+app.get('/profile', (req, res) => {
+    res.render('pages/profile', {
+        user: req.session.user
+    });
+});
+
 
 
 let movieAddMessage = undefined;
@@ -315,7 +318,7 @@ app.get('/findMovies', (req, res) => {
     // const query = "SELECT * FROM movies INNER JOIN movies_to_movie_recs ON movies.movie_id = movies_to_movie_recs.movie_id INNER JOIN movie_recs ON movies_to_movie_recs.movie_rec_id = movie_recs.movie_rec_id LEFT JOIN users_to_movie_recs ON movie_recs.movie_rec_id = users_to_movie_recs.movie_rec_id WHERE (movie_recs.mood = $1 OR movie_recs.weather = $2) AND (users_to_movie_recs.user_id IS NULL OR users_to_movie_recs.user_id != $3)"
 
     if (req.query.mood) {
-        db.manyOrNone(query, [req.query.mood, req.query.weather, (req.query.hideWatchedMoveies? req.session.user.id : -1)]).then((data) => {
+        db.manyOrNone(query, [req.query.mood, req.query.weather, (req.query.hideWatchedMoveies ? req.session.user.id : -1)]).then((data) => {
             console.log(data);
             res.render("pages/findMovies", {
                 user: req.session.user,
@@ -367,7 +370,7 @@ app.get('/findMoviesHome', (req, res) => {
 app.get('/logout', (req, res) => {
     req.session.destroy();
     res.render('pages/logout');
-  });
+});
 
 
 // *****************************************************
