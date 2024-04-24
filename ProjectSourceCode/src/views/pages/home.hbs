@@ -135,8 +135,8 @@
 
     </div>
 
-
-  <div id="carousel" class="carousel slide" style="maring:auto; width:80rem; ">
+{{#if movies}}
+  <div id="carousel" class="carousel slide" style="margin:auto; width:70rem; ">
     <div class="carousel-inner">
 
 
@@ -145,9 +145,8 @@
         <div class="carousel-item {{#if @first}}active{{/if}}" style="maring:auto; ">
           <img src="https://image.tmdb.org/t/p/w400{{url}}" class="d-block w-20" style="margin-left:10rem;">
 
-          <div class="carousel-caption d-none d-md-block" style="margin-left: 17rem; margin-bottom: 30rem;">
-            <h5>{{movie_name}}</h5>
-            <p>{{release_date}}</p>
+          <div class="carousel-caption d-none d-md-block" style="margin-left: 26rem; margin-bottom: 14rem; margin-top: 10rem; font-family:copperplate; text-shadow: 3px 3px rgb(0, 0, 0);">
+            <h5 style="font-size:1.8em;">{{movie_name}}</h5>
           </div>
         </div>
 
@@ -166,10 +165,11 @@
     </button>
 
   </div>
+  {{/if}}
 
 </div>
 
-   <button type="submit" class="btn btn-info float-end" style="font-size:1em; margin:auto; margin-right:27rem; width:40rem">Find New Movies</button>
+   <button type="submit" class="btn btn-info float-end shadow" style="font-size:1.3em; margin:auto; margin-right:27rem;margin-top:.5rem; width:40rem">Find New Movies</button>
 
 
   </form>

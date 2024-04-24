@@ -1,5 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
+<style type="text/css">
+    body {
+        background: rgb(48, 60, 65) !important;
+    }
+
+
+
+    /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
+</style>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,16 +18,17 @@
     <!-- Link to your stylesheet -->
     <link rel="stylesheet" href="../../resources/css/style.css">
 </head>
+
 <body>
 
-<div class="profile-container">
-    <h2>Profile:</h2>
-    <h3>Username: {{user.username}}</h3>
-    <ul>
-        <li class="nav-item">
-            <a class="nav-link" href="/watchedMovies">Watched Movies</a>
-        </li>
-    </ul>
-    <label>Logout?</label>
-    <a href="/logout" class="logout-link">Logout</a>
-</div>
+    <div class="profile-container">
+        <h2>Profile:</h2>
+        <h3>Username: {{user.username}}</h3>
+        <ul>
+            <li class="nav-item">
+                <a class="nav-link" href="/watchedMovies">Watched Movies</a>
+            </li>
+        </ul>
+        <label>Logout?</label>
+        <a href="/logout" class="logout-link">Logout</a>
+    </div>
